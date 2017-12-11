@@ -16,7 +16,7 @@ public class HomeWork6 {
             System.out.println(" swim:" + item.swim(meters));
             System.out.println(" jump:" + item.jump(meters));
         }
-        }
+    }
 }
 
 interface IAnimal{
@@ -26,14 +26,27 @@ interface IAnimal{
     Boolean jump(float meters);
 }
 abstract class Animal implements IAnimal{
+    String name;
+    float max_run;
+    float max_jump;
+    float max_swim;
+
     Animal(String name){
         this.name=name;
     }
-    String name="";
-    public Boolean swim(float meters){
-        return false;
+    public Boolean run(float meters){
+        if (0 <= meters && meters <= max_run) return true;
+        else return false;
     }
-
+    public Boolean jump(float meters){
+        if (0 <= meters && meters <= max_jump) return true;
+        else return false;
+    }
+    @Override
+    public Boolean swim(float meters) {
+        if (0 <= meters && meters <= max_swim) return true;
+        else return false;
+    }
     @Override
     public String toString(){
         return name;
@@ -43,33 +56,16 @@ abstract class Animal implements IAnimal{
 class Cat extends Animal{
     Cat(String name){
         super(name);
-    }
-    public Boolean run(float meters){
-        if (0<meters && meters<=200) return true;
-        else return false;
-    }
-    public Boolean jump(float meters){
-        if (0<meters && meters<=2) return true;
-        else return false;
+        super. max_run=200;
+        super.max_jump=2;
+        super.max_swim=-1;
     }
 }
 class Dog extends Animal {
     Dog(String name){
         super(name);
-    }
-    @Override
-    public Boolean swim(float meters) {
-        if (0 < meters && meters <= 10) return true;
-        else return false;
-    }
-
-    public Boolean run(float meters) {
-        if (0 < meters && meters <= 500) return true;
-        return false;
-    }
-
-    public Boolean jump(float meters) {
-        if (0 < meters && meters <= 0.5) return true;
-        else return false;
+        super.max_run=500;
+        super.max_jump=0.5F;
+        super.max_swim=10;
     }
 }
